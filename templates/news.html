@@ -1,10 +1,14 @@
 {% extends 'flatpages/default.html' %}
-
 {% load censor_filters %}
 
+{% load i18n %}
+
+
 {% block title %}
-News
+{% trans 'News' %}
 {% endblock title %}
+
+{% include "translation.html" %}
 
 {% block content %}
    <h1>Новости</h1>
@@ -15,7 +19,7 @@ News
        <input type="submit" value="Найти" />
    </form>
    <h3>{{ time_now|date:'M d Y' }}</h3>
-   <h3> {{ novosti|default_if_none:"Только свежие новости и только тут!" }} </h3>
+   <h3>{{ novosti|default_if_none:"Только свежие новости и только тут!" }}</h3>
 
    <hr>
    {% if news %}

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import NewsList, NewDetail, NewCreate, NewUpdate, NewDelete, subscriptions, cache_page
+from .views import NewsList, NewDetail, NewCreate, NewUpdate, NewDelete, subscriptions, Index
 
 
 urlpatterns = [
@@ -9,5 +9,6 @@ urlpatterns = [
    path('<int:pk>/update/', NewUpdate.as_view(), name='new_update'),
    path('<int:pk>/delete/', NewDelete.as_view(), name='new_delete'),
    path('subscriptions/', subscriptions, name='subscriptions'),
+   path('index1/', Index.as_view(), name='index'),
 ]
 

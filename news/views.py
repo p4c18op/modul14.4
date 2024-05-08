@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -15,7 +14,7 @@ from django.core.cache import cache
 from django.utils.translation import gettext as _
 
 
-@cache_page(60 * 15) # в аргументы к декоратору передаём количество секунд, которые хотим, чтобы страница держалась в кэше. Внимание! Пока страница находится в кэше, изменения, происходящие на ней, учитываться не будут!
+@cache_page(60 * 15)
 def my_view(request):
     ...
 
@@ -121,7 +120,10 @@ class MobileOrFullMiddleware:
 class Index(View):
     def get(self, request):
         string = _('Hello world')
+        context = {
+            'string': string
+        }
 
-        return HttpResponse(string)
+        return render(request, 'index.html', context)
 
 
